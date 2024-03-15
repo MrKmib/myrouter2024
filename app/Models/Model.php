@@ -135,23 +135,25 @@ class Model{
     public function get(){
         if(empty($this->query)){
 
-            /*--old consulta-*/
-            // if(empty($this->sql)){
-            //     $this->sql = "SELECT *FROM {$this->table}";
-            // }
+             /*--old consulta-*/
+            if(empty($this->sql)){
+                $this->sql = "SELECT *FROM {$this->table}";
+            }
 
-            // $this->sql .= $this->orderBy;
-            // $this->query($this->sql, $this->data, $this->params);
+            $this->sql .= $this->orderBy;
+            $this->query($this->sql, $this->data, $this->params);
             /*--end conulta------*/
 
-            $sql = "SELECT {$this->select} FROM {$this->table}";
-            if($this->where){
-                $sql .= " WHERE {$this->where}";
-            }
-            if($this->orderBy){
-                $sql .= " ORDER BY {$this->orderBy}";
-            }
-            $this->query($sql, $this->values);
+            /*nuevo */
+            // $sql = "SELECT {$this->select} FROM {$this->table}";
+            // if($this->where){
+            //     $sql .= " WHERE {$this->where}";
+            // }
+            // if($this->orderBy){
+            //     $sql .= " ORDER BY {$this->orderBy}";
+            // }
+            // $this->query($sql, $this->values);
+            /*---end nuevo */
 
         }
         return $this->query->fetch_all(MYSQLI_ASSOC);
